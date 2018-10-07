@@ -42,7 +42,7 @@ library
     primitive,
     structs,
     tagged,
-    transformers >= 0.4 && < 0.5
+    transformers >= 0.4 && < 0.6
 
   exposed-modules:
     Concurrent.Bool

@@ -26,8 +26,8 @@
 module Concurrent.Primitive.Array
   (
   -- * Array Primitives
-    sizeofArray
-  , sizeofMutableArray
+    Concurrent.Primitive.Array.sizeofArray
+  , Concurrent.Primitive.Array.sizeofMutableArray
   , casArray
   , atomicModifyArray
   , atomicModifyArray'
@@ -860,9 +860,13 @@ instance Alternative SmallArray where
            s' -> copySmallArray# pn 0# po ilm iln s'
          unsafeFreezeSmallArray o
 
+
+instance Semigroup (SmallArray a) where
+  (<>) = (<|>)
+
+
 instance Monoid (SmallArray a) where
   mempty = empty
-  mappend = (<|>)
 
 instance Show a => Show (SmallArray a) where
   showsPrec d as = showParen (d > 10) $

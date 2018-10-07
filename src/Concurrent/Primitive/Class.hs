@@ -9,8 +9,13 @@ module Concurrent.Primitive.Class where
 import Control.Monad.Primitive
 import Control.Monad.ST
 
-class (PrimMonad m, PrimState m ~ s) => MonadPrim s m | s -> m
-instance (PrimMonad m, PrimState m ~ s) => MonadPrim s m
+-- class (PrimMonad m, PrimState m ~ s) => MonadPrim s m | s -> m
+class (PrimMonad m, PrimState m ~ s) => MonadPrim s m
+
+instance MonadPrim RealWorld IO
+instance MonadPrim s (ST s)
+
+-- instance (PrimMonad m, PrimState m ~ s) => MonadPrim s m
 
 class MonadPrim RealWorld m => MonadPrimIO m
 instance MonadPrim RealWorld m => MonadPrimIO m
